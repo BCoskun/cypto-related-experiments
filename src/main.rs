@@ -16,6 +16,9 @@ fn main() {
     ];
 
     let cert = generate_simple_self_signed(subject_alt_names).expect("Something Wrong!");
+    
+    let pem_content = cert.serialize_pem().unwrap();
+    std::fs::write("cert_pem_file_output.cer", pem_content).unwrap();
     println!("{}", cert.serialize_pem().unwrap());
     println!("{}", cert.serialize_private_key_pem());
     println!("{}", cert.serialize_request_pem().unwrap());
